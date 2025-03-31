@@ -1,0 +1,135 @@
+// Colors & Effects
+$primary-color: #ffcc00;
+$secondary-color: #ff8c42;
+$dark-bg: #21222a;
+$light-bg: #1e1e1e;
+$text-color: white;
+$transition: 0.3s ease-in-out;
+
+.timeline-section {
+  padding: 100px 10%;
+  background: $dark-bg;
+  text-align: center;
+  color: $text-color;
+
+  h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: $primary-color;
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 700px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    &.education {
+      justify-content: flex-start;
+    }
+
+    &.experience {
+      justify-content: flex-end;
+    }
+
+    .timeline-dot {
+      width: 18px;
+      height: 18px;
+      background: $primary-color;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      box-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+    }
+
+    .timeline-content {
+      background: $light-bg;
+      padding: 20px;
+      border-radius: 12px;
+      width: 45%;
+      box-shadow: 0px 5px 15px rgba(255, 107, 107, 0.3);
+      transition: $transition;
+      text-align: left;
+      transform: translateY(0);
+
+      .timeline-year {
+        font-weight: bold;
+        color: $secondary-color;
+      }
+
+      h3 {
+        font-size: 22px;
+        margin: 5px 0;
+      }
+
+      h4 {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      p {
+        font-size: 14px;
+        margin-top: 5px;
+        opacity: 0.8;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        background: lighten($light-bg, 5%);
+      }
+    }
+  }
+}
+
+// 🔹 Responsive Design
+@media (max-width: 768px) {
+  .timeline {
+    width: 90%;
+    
+    &::before {
+      left: 20px;
+      transform: none;
+    }
+
+    .timeline-item {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .timeline-dot {
+        left: 20px;
+      }
+
+      .timeline-content {
+        width: 80%;
+        margin-left: 40px;
+      }
+    }
+  }
+}
